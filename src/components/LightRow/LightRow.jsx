@@ -4,7 +4,9 @@ const styles = require('./LightRow.scss');
 
 export default class LightRow extends Component {
 	static propTypes = {
-		width: PropTypes.number
+		width: PropTypes.number,
+		lightSwitched: PropTypes.function,
+		row: PropTypes.number
 	}
 
 	constructor(props){
@@ -20,11 +22,12 @@ export default class LightRow extends Component {
 	}
 
 	render() {
+		const { lightSwitched, row } = this.props
 		const lights = this.getLights();
 
 		return(
 			<div className={styles.light_row}>
-				{lights.map((light, idx) => <Light key={idx}/> )}
+				{lights.map((light, idx) => <Light lightSwitched={lightSwitched} key={idx} column={idx} row={row}/> )}
 			</div>
 		)
 	}

@@ -9,6 +9,10 @@ export default class Grid extends Component {
 		width: PropTypes.number
 	}
 
+	constructor(props){
+		super(props);
+	}
+
 	getRows() {
 		let rows = [];
 		for(let row = 0; row < this.props.height; row++){
@@ -17,13 +21,17 @@ export default class Grid extends Component {
 		return rows
 	}
 
+	lightSwitched(row, column) {
+		console.log(row, column)
+	}
+
 	render() {
 		console.log("rendering grid")
 		const rows = this.getRows()
 		const width = this.props.width
 		return (
 			<div className="game_grid">
-				{rows.map((item, idx) => <LightRow key={idx} width={width}/>)}
+				{rows.map((item, idx) => <LightRow lightSwitched={this.lightSwitched} key={idx} row={idx} width={width}/>)}
 			</div>
 		)
 	}
