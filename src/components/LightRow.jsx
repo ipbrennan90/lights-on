@@ -22,7 +22,7 @@ export default class LightRow extends Component {
 		const lights = this.getLights();
 
 		return(
-			<div className="row">
+			<div className="light_row">
 				{lights.map((light, idx) => <Light key={idx}/> )}
 			</div>
 		)
