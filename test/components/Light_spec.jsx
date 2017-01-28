@@ -5,7 +5,7 @@ import {
 	scryRenderedDOMComponentsWithTag
 } from 'react-addons-test-utils';
 import { expect } from 'chai';
-import Light from '../../src/components/Light';
+import Light from '../../src/components/Light/Light';
 
 describe('Light', () => {
 	it('renders a button', () => {

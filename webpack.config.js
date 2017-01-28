@@ -1,3 +1,4 @@
+var webpack = require('webpack')
 module.exports = {
 	entry: [
 		'webpack-dev-server/client?http://localhost:8080',
@@ -8,8 +9,12 @@ module.exports = {
 		loaders: [{
 			test: /\.jsx?$/,
 			exclude: /node_modules/,
-			loader: 'react-hot!babel'
-		}]
+			loader: 'babel-loader'
+		},
+		{
+	    test: /\.scss$/,
+	    loaders: ['style', 'css', 'sass']
+	  }]
 	},
 	resolve: {
 		extensions: ['', '.js', '.jsx']

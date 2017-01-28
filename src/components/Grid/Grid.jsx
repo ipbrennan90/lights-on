@@ -1,5 +1,7 @@
 import React, {PropTypes, Component} from 'react';
-import LightRow from './LightRow';
+import LightRow from '../LightRow/LightRow';
+
+const styles = require('./Grid.scss');
 
 export default class Grid extends Component {
 	static PropTypes = {
@@ -16,6 +18,7 @@ export default class Grid extends Component {
 	}
 
 	render() {
+		console.log("rendering grid")
 		const rows = this.getRows()
 		const width = this.props.width
 		return (

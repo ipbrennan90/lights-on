@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react';
-import Light from './Light'
+import Light from '../Light/Light'
+const styles = require('./LightRow.scss');
 
 export default class LightRow extends Component {
 	static propTypes = {
@@ -22,7 +23,7 @@ export default class LightRow extends Component {
 		const lights = this.getLights();
 
 		return(
-			<div className="light_row">
+			<div className={styles.light_row}>
 				{lights.map((light, idx) => <Light key={idx}/> )}
 			</div>
 		)

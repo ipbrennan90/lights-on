@@ -5,8 +5,8 @@ import {
 	scryRenderedComponentsWithType
 } from 'react-addons-test-utils';
 import { expect } from 'chai';
-import Grid from '../../src/components/Grid';
-import LightRow from '../../src/components/LightRow';
+import Grid from '../../src/components/Grid/Grid';
+import LightRow from '../../src/components/LightRow/LightRow';
 
 describe('Grid', () => {
 	it('renders a grid with rows equal to its height', () => {

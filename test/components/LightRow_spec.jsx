@@ -5,7 +5,7 @@ import {
 	scryRenderedDOMComponentsWithTag
 } from 'react-addons-test-utils';
 import { expect } from 'chai';
-import LightRow from '../../src/components/LightRow';
+import LightRow from '../../src/components/LightRow/LightRow';
 
 describe('Light', () => {
 	it('renders a row of buttons', () => {
