@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Grid from './components/Grid/Grid';
+import GameContainer from './components/GameContainer/GameContainer';
 console.log("rendering");
 ReactDOM.render(
-	<Grid height={5} width={5}/>,
+	<GameContainer/>,
 	document.getElementById('app')
 );

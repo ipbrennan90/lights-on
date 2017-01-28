@@ -1,3 +1,13 @@
+@keyframes light {
+	0% {
+		background-color: white
+	}
+
+	100% {
+		background-color: blue
+	}
+}
+
 .light {
 	color: beige;
 	background-color: white;
@@ -5,7 +15,12 @@
 	height: 5rem;
 	border-radius: 1rem;
 	width: 5rem;
-	.on {
-		background-color: blue
-	}
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+	outline: none
+}
+.on {
+	background-color: blue;
 }
