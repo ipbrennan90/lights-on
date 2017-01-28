@@ -16,10 +16,10 @@ export default class Light extends Component {
 		this.switchLight = this.switchLight.bind(this);
 	}
 
-	switchLight(e) {
+	switchLight() {
 		const { lightSwitched, row, column } = this.props
 		this.state.light === 'off' ? this.setState({light: 'on'}) : this.setState({light: 'off'});
-		lightSwitched(row, column);
+		// lightSwitched(row, column);
 	}
 
 	getLightStyle() {

@@ -11,6 +11,7 @@ export default class Grid extends Component {
 
 	constructor(props){
 		super(props);
+		this.lightSwitched = this.lightSwitched.bind(this)
 	}
 
 	getRows() {
@@ -23,6 +24,7 @@ export default class Grid extends Component {
 
 	lightSwitched(row, column) {
 		console.log(row, column)
+		console.log(this.refs[row])
 	}
 
 	render() {
@@ -31,7 +33,7 @@ export default class Grid extends Component {
 		const width = this.props.width
 		return (
 			<div className="game_grid">
-				{rows.map((item, idx) => <LightRow lightSwitched={this.lightSwitched} key={idx} row={idx} width={width}/>)}
+				{rows.map((item, idx) => <LightRow lightSwitched={this.lightSwitched} key={idx} ref={idx} row={idx} width={width}/>)}
 			</div>
 		)
 	}
