@@ -1,0 +1,12 @@
+.light {
+	color: beige;
+	background-color: white;
+	border: 2px solid blue;
+	height: 5rem;
+	border-radius: 1rem;
+	width: 5rem;
+}
+
+.light.on {
+	background-color: blue
+}
