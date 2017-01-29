@@ -5,7 +5,8 @@ const styles = require('./LightRow.scss');
 export default class LightRow extends Component {
 	static propTypes = {
 		width: PropTypes.number,
-		row: PropTypes.number
+		row: PropTypes.number,
+		lightSwitched: PropTypes.func
 	}
 
 	constructor(props){
@@ -18,6 +19,16 @@ export default class LightRow extends Component {
 			array.push(light);
 		}
 		return array
+	}
+
+	checkRowOff() {
+		const { width } = this.props
+		const isOff = (light) => { return !light.state.on; }
+		let lights = [];
+		for(let light = 0; light < width; light ++) {
+			lights.push(this.refs[light])
+		}
+		return lights.every(isOff)
 	}
 
 	render() {

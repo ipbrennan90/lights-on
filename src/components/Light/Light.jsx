@@ -4,7 +4,8 @@ const styles = require('./Light.scss')
 export default class Light extends Component {
 	static propTypes = {
 		row: PropTypes.number,
-		column: PropTypes.number
+		column: PropTypes.number,
+		lightSwitched: PropTypes.func
 	}
 
 	constructor(props) {

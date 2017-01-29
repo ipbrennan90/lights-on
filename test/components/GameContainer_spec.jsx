@@ -10,6 +10,7 @@ import { expect } from 'chai';
 import GameContainer from '../../src/components/GameContainer/GameContainer'
 import Grid from '../../src/components/Grid/Grid';
 import LightRow from '../../src/components/LightRow/LightRow';
+import Light from '../../src/components/Light/Light';
 
 describe('GameContainer', () => {
 	it('renders a game with a 5 row grid', () => {
@@ -21,21 +22,12 @@ describe('GameContainer', () => {
 		expect(rows.length).to.equal(5);
 	})
 
-	it('can set game height', () => {
-		const component = renderIntoDocument(
-			<GameContainer/>
-		)
-		const gameContainer = scryRenderedComponentsWithType(component, GameContainer)
-		const width = gameContainer[0].gameWidth;
-		const height = gameContainer[0].gameHeight;
+	it('tracks players move based on clicks', () => {
+		const component = renderIntoDocument(<GameContainer/>);
 		const buttons = scryRenderedDOMComponentsWithTag(component, 'button')
-		width.value = 10;
-		height.value = 20;
-		Simulate.change(width);
-		Simulate.change(height);
-		Simulate.click(buttons[0]);
-		const rows = scryRenderedComponentsWithType(component, LightRow);
-		expect(rows.length).to.equal(20);
+		//skip over startGame button
+		Simulate.click(buttons[1])
+		expect(component.state.moves).to.equal(1);
 
 	})
 })

@@ -22,10 +22,19 @@ describe('Light', () => {
 			<Light/>
 		)
 		const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
-		expect(component.state.on).not.to.be.true;
-		component.remoteSwitch();
-		expect(component.state.on).to.be.true;
-		component.remoteSwitch();
-		expect(component.state.on).not.to.be.true;
+		const lightOn = component.state.on;
+		if(lightOn) {
+			expect(component.state.on).to.be.true;
+			component.remoteSwitch();
+			expect(component.state.on).not.to.be.true;
+			component.remoteSwitch();
+			expect(component.state.on).to.be.true;
+		} else {
+			expect(component.state.on).not.to.be.true;
+			component.remoteSwitch();
+			expect(component.state.on).to.be.true;
+			component.remoteSwitch();
+			expect(component.state.on).not.to.be.true;
+		}
 	})
 })
