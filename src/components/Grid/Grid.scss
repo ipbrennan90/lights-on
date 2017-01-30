@@ -1,5 +1,7 @@
-.game_grid {
-	width: 500rem;
-	height: 500rem;
-	background-color: 'orange';
+.game-grid {
+  background-image: url('../../assets/board-background.png');
+  background-size: cover;
+  display: inline-block;
+	text-align: center;
+	border-radius: .5rem;
 }

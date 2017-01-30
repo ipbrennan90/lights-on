@@ -9,6 +9,19 @@ import { expect } from 'chai';
 import Light from '../../src/components/Light/Light';
 
 describe('Light', () => {
+
+	let component;
+
+	beforeEach(() => {
+		component = renderIntoDocument(
+			<Light/>
+		)
+	})
+
+	afterEach(() => {
+		component = undefined
+	})
+
 	it('renders a button', () => {
 		const component = renderIntoDocument(
 			<Light/>

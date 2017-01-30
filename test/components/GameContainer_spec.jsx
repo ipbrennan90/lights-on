@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'; // eslint-disable-line
+import ReactDOM from 'react-dom'; // eslint-disable-line
 import {
 	renderIntoDocument,
 	Simulate,
@@ -7,27 +7,34 @@ import {
 	scryRenderedDOMComponentsWithTag
 } from 'react-addons-test-utils';
 import { expect } from 'chai';
-import GameContainer from '../../src/components/GameContainer/GameContainer'
-import Grid from '../../src/components/Grid/Grid';
+import GameContainer from '../../src/components/GameContainer/GameContainer' // eslint-disable-line
 import LightRow from '../../src/components/LightRow/LightRow';
-import Light from '../../src/components/Light/Light';
+import Light from '../../src/components/Light/Light'; // eslint-disable-line
 
 describe('GameContainer', () => {
-	it('renders a game with a 5 row grid', () => {
-		const component = renderIntoDocument(
+
+	let component;
+
+	beforeEach(() => {
+		component = renderIntoDocument(
 			<GameContainer/>
-		)
-		const grid = scryRenderedComponentsWithType(component, Grid)
+		);
+	});
+
+	afterEach(() => {
+		component = undefined;
+	});
+
+	it('renders a game with a 5 row grid', () => {
 		const rows = scryRenderedComponentsWithType(component, LightRow);
 		expect(rows.length).to.equal(5);
-	})
+	});
 
 	it('tracks players move based on clicks', () => {
-		const component = renderIntoDocument(<GameContainer/>);
-		const buttons = scryRenderedDOMComponentsWithTag(component, 'button')
+		const buttons = scryRenderedDOMComponentsWithTag(component, 'button');
 		//skip over startGame button
-		Simulate.click(buttons[1])
+		Simulate.click(buttons[1]);
 		expect(component.state.moves).to.equal(1);
 
-	})
-})
+	});
+});

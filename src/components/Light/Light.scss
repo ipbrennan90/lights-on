@@ -1,26 +1,50 @@
-@keyframes light {
-	0% {
-		background-color: white
-	}
+$light-on: #ff0;
+$light-off: #000;
+$light-border: #666;
 
-	100% {
-		background-color: blue
-	}
+.light-button {
+  background-color: none;
+	border-radius: 1.2rem;
+	border: 2px solid $light-off;
+  outline: none;
+	padding: 0;
+  margin: 1rem;
+  width: 5.6rem;
+  height: 5.7rem;
 }
 
 .light {
-	color: beige;
-	background-color: white;
-	border: 2px solid blue;
-	height: 5rem;
-	border-radius: 1rem;
-	width: 5rem;
+  background-color: $light-off;
+  border: 2px solid $light-border;
+  border-radius: 1rem;
+  height: 5rem;
   -webkit-transition: 1s;
   -moz-transition: 1s;
-  -o-transition: 1s;
   transition: 1s;
-	outline: none
+  width: 5rem;
 }
+
 .on {
-	background-color: blue;
+  background-color: $light-on;
+}
+
+.light-border-one {
+  border: 2px solid $light-off;
+  border-radius: 1.1rem;
+  height: 5rem;
+	-webkit-transition: 1s;
+  -moz-transition: 1s;
+	transition: 1s;
+  width: 5rem;
+}
+
+.border-on {
+  border: 2px solid $light-on;
+}
+
+.light-border-two {
+  border: 2px solid $light-off;
+  border-radius: 1.2rem;
+  height: 5.25rem;
+  width: 5.25rem;
 }

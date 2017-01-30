@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
-import Light from '../Light/Light'
-const styles = require('./LightRow.scss');
+import React, {Component, PropTypes} from 'react'; // eslint-disable-line
+import Light from '../Light/Light'; // eslint-disable-line
+const styles = require('./LightRow.scss'); // eslint-disable-line
 
 export default class LightRow extends Component {
 	static propTypes = {
@@ -11,34 +11,39 @@ export default class LightRow extends Component {
 
 	constructor(props){
 		super(props);
+		this.isOff = false;
+		this.checkRowOff.bind(this);
 	}
 
 	getLights() {
-		let array = []
+		let array = [];
 		for(let light = 0; light < this.props.width; light++){
 			array.push(light);
 		}
-		return array
+		return array;
 	}
 
 	checkRowOff() {
-		const { width } = this.props
-		const isOff = (light) => { return !light.state.on; }
+		const { width } = this.props;
+		const lightOff = (lightOn) => { return !lightOn; };
+		let isRowOff;
 		let lights = [];
 		for(let light = 0; light < width; light ++) {
-			lights.push(this.refs[light])
+			lights.push(this.refs[light].state.on);
 		}
-		return lights.every(isOff)
+		isRowOff = lights.every(lightOff);
+		this.isOff = isRowOff;
+		return this.isOff;
 	}
 
 	render() {
-		const { lightSwitched, row } = this.props
+		const { lightSwitched, row } = this.props;
 		const lights = this.getLights();
 
 		return(
-			<div className={styles.light_row}>
+			<div className="light-row">
 				{lights.map((light, idx) => <Light lightSwitched={lightSwitched} key={idx} ref={idx} column={idx} row={row}/> )}
 			</div>
-		)
+		);
 	}
 }
