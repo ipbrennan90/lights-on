@@ -15,8 +15,10 @@ describe('reducer', () => {
 						List.of(0,1,0,1,1),
 						List.of(0,0,0,0,1),
 						List.of(0,1,0,1,0),
+						List.of(0,1,1,1,0),
 						List.of(0,1,1,1,0)
 					),
+					moves: 0,
 					hasWon: false
 				})
 			})
@@ -29,8 +31,10 @@ describe('reducer', () => {
 					[0,1,0,1,1],
 					[0,0,0,0,1],
 					[0,1,0,1,0],
+					[0,1,1,1,0],
 					[0,1,1,1,0]
 				],
+				moves: 0,
 				hasWon: false
 			}
 		}));
@@ -45,8 +49,10 @@ describe('reducer', () => {
 						[0,1,0,1,1],
 						[0,0,0,0,1],
 						[0,1,0,1,0],
+						[0,1,1,1,0],
 						[0,1,1,1,0]
 					],
+					moves: 0,
 					hasWon: false
 				}
 			}
@@ -59,8 +65,10 @@ describe('reducer', () => {
 					[0,1,0,1,1],
 					[0,0,0,0,1],
 					[0,1,0,1,0],
+					[0,1,1,1,0],
 					[0,1,1,1,0]
 				],
+				moves: 0,
 				hasWon: false
 			}
 		}));
@@ -76,8 +84,10 @@ describe('reducer', () => {
 						[0,1,0,1,1],
 						[0,0,0,0,1],
 						[0,1,0,1,0],
+						[0,1,1,1,0],
 						[0,1,1,1,0]
 					],
+					moves: 0,
 					hasWon: false
 				}
 			}
@@ -90,10 +100,78 @@ describe('reducer', () => {
 					[0,1,0,1,1],
 					[0,0,0,0,1],
 					[0,1,0,1,0],
+					[0,1,1,1,0],
 					[0,1,1,1,0]
 				],
+				moves: 0,
 				hasWon: false
 			}
 		}));
-	})
+	});
+
+	it('will add to state moves with the move action', () => {
+		const state = fromJS({
+			game: {
+				rows: [
+					[0,1,0,1,1],
+					[0,0,0,0,1],
+					[0,1,0,1,0],
+					[0,1,1,1,0],
+					[0,1,1,1,0]
+				],
+				moves: 0,
+				hasWon: false
+			}
+		});
+
+		const action = {type: 'MOVE'};
+		const nextState = reducer(state, action);
+
+		expect(nextState).to.equal(fromJS({
+			game: {
+				rows: [
+					[0,1,0,1,1],
+					[0,0,0,0,1],
+					[0,1,0,1,0],
+					[0,1,1,1,0],
+					[0,1,1,1,0]
+				],
+				moves: 1,
+				hasWon: false
+			}
+		}));
+	});
+
+	it('will update game rows correctly when a switch action has occured', () => {
+		const state = fromJS({
+			game: {
+				rows: [
+					[0,1,0,1,1],
+					[0,0,0,0,1],
+					[0,1,0,1,0],
+					[0,1,1,1,0],
+					[0,1,1,1,0],
+				],
+				moves: 0,
+				hasWon: false
+			}
+		});
+
+		const action = {type: 'SWITCH_LIGHT', row: 3, column: 4};
+		const nextState = reducer(state, action);
+
+		expect(nextState).to.equal(fromJS({
+			game: {
+				rows: [
+					[0,1,0,1,1],
+					[0,0,0,0,1],
+					[0,1,0,1,1],
+					[0,1,1,0,1],
+					[0,1,1,1,1],
+				],
+				moves: 1,
+				hasWon: false
+			}
+		}));
+	});
 });

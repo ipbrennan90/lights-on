@@ -1,8 +1,9 @@
 import React, {Component} from 'react'; // eslint-disable-line
+import { connect } from 'react-redux';
 import Grid from '../Grid/Grid'; // eslint-disable-line
 const styles = require("./GameContainer.scss"); // eslint-disable-line
 
-export default class GameContainer extends Component {
+class GameContainer extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -10,6 +11,7 @@ export default class GameContainer extends Component {
 		};
 		this.playerMoved = this.playerMoved.bind(this);
 		this.newGame = this.newGame.bind(this);
+		console.log(props);
 	}
 
 	newGame () {
@@ -33,6 +35,14 @@ export default class GameContainer extends Component {
 			</div>
 		);
 	}
-
-
 }
+
+const mapStateToProps = (state) => {
+	return {
+		game: state.get('game'),
+		hasWon: state.get('hasWon')
+	};
+};
+
+export { GameContainer };
+export default connect(mapStateToProps)(GameContainer);
