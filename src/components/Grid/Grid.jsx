@@ -40,7 +40,8 @@ export default class Grid extends Component {
 		this.setState({
 			height: height > 0 ? height : 5,
 			width: width > 0 ? width : 5,
-			newGame: true
+			newGame: true,
+			gameWon: false
 		});
 		newGame();
 		this.getRowsState();
@@ -60,7 +61,7 @@ export default class Grid extends Component {
 			let state = this.state;
 			const isWinner = this.checkForWin();
 			state.gameWon = isWinner;
-			this.setState(state);
+			if(isWinner) this.setState(state);
 		});
 	}
 
@@ -102,28 +103,6 @@ export default class Grid extends Component {
 		const rowOff = (isOff) => isOff;
 		return componentRowsState.every(rowOff);
 	}
-
-	// solveGame() {
-	// 	this.turnLightsOff().then(() => {
-	// 		let state = this.state;
-	// 		const isWinner = this.checkForWin();
-	// 		state.gameWon = isWinner;
-	// 		this.setState(state);
-	// 	});
-	// }
-	//
-	// turnLightsOff() {
-	// 	return new Promise((resolve) => {
-	// 		const rows = this.getRows();
-	// 		for(let row of rows) {
-	// 			const iterationRow = this.refs[row];
-	// 			for(let light = 0; light < iterationRow.props.width; light++) {
-	// 				iterationRow.refs[light].setState({on: false});
-	// 			}
-	// 		}
-	// 		resolve();
-	// 	});
-	// }
 
 	render() {
 		const rows = this.getRows();

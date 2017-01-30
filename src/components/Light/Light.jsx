@@ -5,7 +5,6 @@ export default class Light extends Component {
 	static propTypes = {
 		row: PropTypes.number,
 		column: PropTypes.number,
-		updateRow: PropTypes.func,
 		lightSwitched: PropTypes.func
 	}
 
