@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import { turnLightOnAt, boardCreator } from './helpers/board_helper';
+import { turnLightOnAt, checkBoardForWin } from './helpers/board_helper';
 
 const setState = (state, newState) => {
 	return state.merge(newState);
@@ -13,11 +13,24 @@ const move = (state) => {
 };
 
 const switchLight = (state, row, column) => {
+	console.log(state);
 	let board = state.getIn(['game', 'rows']).toJS();
 	const newBoard = turnLightOnAt(row, column, board);
 	return state.updateIn(['game', 'rows'],
 		rows => newBoard
 	);
+};
+
+const checkForWin = (state) => {
+	const board = state.getIn(['game', 'rows']).toJS();
+	const didWin = checkBoardForWin(board);
+	if(didWin) {
+		return state.updateIn(['game', 'hasWon'],
+			hasWon => didWin
+		);
+	} else {
+		return state;
+	}
 };
 
 export default function(state = Map(), action) {
@@ -28,6 +41,8 @@ export default function(state = Map(), action) {
 		return move(state);
 	case 'SWITCH_LIGHT':
 		return switchLight(move(state), action.row, action.column);
+	case 'CHECK_WIN':
+		return checkForWin(state);
 	}
 
 	return state;

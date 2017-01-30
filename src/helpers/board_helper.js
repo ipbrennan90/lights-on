@@ -43,3 +43,12 @@ export const turnLightOnAt = (row, column, board) => {
 	newBoard[row][column] = lightValue(newBoard[row][column]);
 	return boardToList(newBoard);
 };
+
+export const checkBoardForWin = (board) => {
+	let isRowOff = [];
+	for(let row of board) {
+		let isOff = (light) => light === 0;
+		isRowOff.push(row.every(isOff));
+	}
+	return isRowOff.every((row) => row);
+};

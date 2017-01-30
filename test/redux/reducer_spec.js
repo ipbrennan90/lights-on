@@ -174,4 +174,39 @@ describe('reducer', () => {
 			}
 		}));
 	});
+
+	it('can detect a win', () => {
+		const state = fromJS({
+			game: {
+				rows: [
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,1,0,0],
+					[0,1,1,1,0],
+				],
+				moves: 24,
+				hasWon: false
+			}
+		});
+		const actions = [
+			{type: 'SET_STATE', state: state},
+			{type: 'SWITCH_LIGHT', row: 4, column: 2},
+			{type: 'CHECK_WIN'}
+		];
+		const nextState = actions.reduce(reducer, Map());
+		expect(nextState).to.equal(fromJS({
+			game: {
+				rows: [
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+					[0,0,0,0,0],
+				],
+				moves: 25,
+				hasWon: true
+			}
+		}))
+	});
 });
