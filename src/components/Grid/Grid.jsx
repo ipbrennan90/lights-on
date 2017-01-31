@@ -11,7 +11,7 @@ export default class Grid extends PureComponent {
 		switchLight: PropTypes.func,
 		globalState: PropTypes.object,
 		rows: PropTypes.object,
-		moves: PropTypes.number
+		moves: PropTypes.number,
 	}
 
 	constructor(props){
