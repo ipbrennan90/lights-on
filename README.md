@@ -2,6 +2,9 @@
 ### Get Started
   - npm install
   - webpack-dev-server
+	- may take a few seconds for the board image to load, the image loader is a bit slow
+	- if dev server won't run you may need to install webpack-dev-server globally
+	- npm install webpack-dev-server -g
 	- to run tests: npm run test
 
 ### Recommendations
