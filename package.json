@@ -6,8 +6,8 @@
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ignore-styles ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
     "test:watch": "npm run test -- --watch",
-		"build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
-  	"start": "node ./src/app.js"
+    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
+    "start": "node ./src/app.js"
   },
   "keywords": [],
   "author": "Ian Brennan <ian@barbershop.io> (http://barbershop.io)",
@@ -36,6 +36,7 @@
     "babel-preset-react": "6.22.0",
     "babel-preset-stage-0": "6.22.0",
     "css-loader": "0.26.1",
+    "express": "4.14.1",
     "immutable": "3.8.1",
     "node-sass": "4.4.0",
     "node-sass-loader": "0.1.7",
