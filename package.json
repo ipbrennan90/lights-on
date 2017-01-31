@@ -9,7 +9,7 @@
     "clean-public": "npm run remove-public && mkdir public",
     "remove-public": "node_modules/.bin/rimraf ./public",
     "build:html": "babel-node tools/buildHtml.js",
-    "heroku-prebuild": "npm run clean-public && lint && build:html",
+    "heroku-prebuild": "npm run clean-public && build:html",
     "build": "babel-node tools/build.js",
     "heroku-postbuild": "babel-node tools/publicServer.js"
   },
