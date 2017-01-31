@@ -36,6 +36,7 @@
     "immutable": "3.8.1",
     "node-sass": "4.4.0",
     "node-sass-loader": "0.1.7",
+    "react": "15.4.2",
     "react-addons-test-utils": "15.4.2",
     "react-favicon": "0.0.5",
     "react-redux": "5.0.2",
