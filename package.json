@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --require ignore-styles ./test/test_helper.js \"test/**/*@(.js|.jsx)\"",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+		"build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
+  	"start": "node ./src/app.js"
   },
   "keywords": [],
   "author": "Ian Brennan <ian@barbershop.io> (http://barbershop.io)",
