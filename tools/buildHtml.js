@@ -1,6 +1,7 @@
+/*eslint-disable no-console */
 import fs from 'fs';
 import cheerio from 'cheerio';
-import colors from 'colors';
+import colors from 'colors'; //eslint-disable-line
 
 fs.readFile('src/index.html', 'utf8', (err, markup) => {
 	if(err) {
@@ -10,7 +11,7 @@ fs.readFile('src/index.html', 'utf8', (err, markup) => {
 	const $ = cheerio.load(markup);
 	$('head').prepend('');
 
-	fs.writeFile('public/index.html', $.html(), 'utf8', function(err) {
+	fs.writeFile('public/index.html', $.html(), 'utf8', (err) => {
 		if(err) {
 			return console.log(err);
 		}
