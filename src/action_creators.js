@@ -21,3 +21,10 @@ export const checkForWin = (state) => {
 		state
 	};
 };
+
+export const resetGame = (state) => {
+	return {
+		type: 'RESET_GAME',
+		state
+	};
+};

@@ -12,7 +12,9 @@ store.dispatch({
 		game: {
 			rows: boardCreator(5,5),
 			hasWon: false,
-			moves: 0
+			moves: 0,
+			height: 5,
+			width: 5
 		}
 	}
 });

@@ -12,10 +12,14 @@ class GameContainer extends Component {
 		setReduxState: PropTypes.func,
 		globalState: PropTypes.object,
 		checkForWin: PropTypes.func,
+		resetGame: PropTypes.func
 	}
 
 	componentWillReceiveProps(){
-		const { checkForWin, globalState } = this.props;
+		const { checkForWin, globalState, hasWon, resetGame } = this.props;
+		if(hasWon) {
+			resetGame();
+		}
 		checkForWin(globalState);
 	}
 

@@ -1,9 +1,8 @@
 import { Map } from 'immutable';
-import { turnLightOnAt, checkBoardForWin } from './helpers/board_helper';
+import { turnLightOnAt, checkBoardForWin, boardCreator } from './helpers/board_helper';
 
 const setState = (state, newState) => {
-	let realState = state.merge(newState);
-	return realState
+	return state.merge(newState);
 };
 
 const move = (state) => {
@@ -33,6 +32,21 @@ const checkForWin = (state) => {
 	}
 };
 
+const resetGame= (state) => {
+	const rowElements = state.getIn(['game', 'rows']).toJS();
+	const rows = rowElements.length;
+	const columns = rowElements[0].length;
+	const newState = {
+		game: {
+			rows: boardCreator(rows, columns),
+			hasWon: false,
+			moves: 0,
+		}
+	};
+
+	return state.merge(newState);
+};
+
 export default function(state = Map(), action) {
 	switch (action.type) {
 	case 'SET_STATE':
@@ -43,6 +57,8 @@ export default function(state = Map(), action) {
 		return switchLight(move(state), action.row, action.column);
 	case 'CHECK_WIN':
 		return checkForWin(state);
+	case 'RESET_GAME':
+		return resetGame(state);
 	}
 
 	return state;
