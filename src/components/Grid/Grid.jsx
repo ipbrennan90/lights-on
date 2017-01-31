@@ -1,5 +1,5 @@
 import React, {PropTypes, PureComponent} from 'react'; //eslint-disable-line
-const styles = require('./Grid.scss'); // eslint-disable-line
+// const styles = require('./Grid.scss'); // eslint-disable-line
 import { boardCreator } from '../../helpers/board_helper';
 import LightRow from '../LightRow/LightRow'; //eslint-disable-line
 
