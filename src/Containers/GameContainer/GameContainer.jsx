@@ -15,7 +15,6 @@ class GameContainer extends Component {
 	}
 
 	componentWillReceiveProps(){
-		console.log("WE UPDATIN");
 		const { checkForWin, globalState } = this.props;
 		checkForWin(globalState);
 	}

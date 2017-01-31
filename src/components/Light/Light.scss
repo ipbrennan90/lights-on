@@ -4,13 +4,13 @@ $light-border: #666;
 
 .light-button {
   background-color: none;
-	border-radius: 1.2rem;
-	border: 2px solid $light-off;
-  outline: none;
-	padding: 0;
-  margin: 1rem;
-  width: 5.6rem;
+  border: 2px solid $light-off;
+  border-radius: 1.2rem;
   height: 5.7rem;
+  margin: 1rem;
+  outline: none;
+  padding: 0;
+  width: 5.6rem;
 }
 
 .light {
@@ -32,9 +32,9 @@ $light-border: #666;
   border: 2px solid $light-off;
   border-radius: 1.1rem;
   height: 5rem;
-	-webkit-transition: 1s;
+  -webkit-transition: 1s;
   -moz-transition: 1s;
-	transition: 1s;
+  transition: 1s;
   width: 5rem;
 }
 

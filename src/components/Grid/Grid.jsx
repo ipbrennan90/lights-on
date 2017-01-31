@@ -65,7 +65,7 @@ export default class Grid extends PureComponent {
 					}
 					<input type="number" ref={(height) => {this.gameHeight = height;}} placeholder="height" className="game_height"></input>
 					<input type="number" ref={(width) => {this.gameWidth = width;}} placeholder="width" className="game_width"></input>
-					<button className="startGame" onClick={this.startGame}>{this.getGameButtonText()}</button>
+					<button className="start-game" onClick={this.startGame}>{this.getGameButtonText()}</button>
 					<div className="lights">
 						{rows.map((lights, idx) => <LightRow switchLight={this.props.switchLight} globalState={this.props.globalState} key={idx} row={idx} lights={lights}/>)}
 					</div>
