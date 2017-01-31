@@ -1,7 +1,62 @@
+$game-container-background: #000;
+$input-text: #fff;
+$shadow: #888;
+
+body {
+	margin: 0;
+	padding:0;
+}
+
+.games-container {
+	overflow: auto;
+  background-color: $game-container-background;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	text-align: center;
+}
+
 .game-grid {
   background-image: url('../../assets/board-background.png');
   background-size: cover;
   display: inline-block;
 	text-align: center;
 	border-radius: .5rem;
+	margin: 4rem 0;
+}
+
+input {
+	background: $game-container-background;
+  border: none;
+  margin: 0 1rem 0 0;
+  color: $input-text;
+	font-family: "Courier New";
+  border-radius: .2rem;
+  height: 1.5rem;
+  padding-left: 0.5rem;
+	box-shadow: 3px 6px 5px $shadow;
+}
+
+.startGame{
+	background: black;
+  border: none;
+  color: white;
+  font-family: "Courier New";
+  height: 1.5rem;
+  border-radius: .2rem;
+	outline: none;
+  box-shadow: 3px 6px 5px $shadow;
+}
+
+.startGame:active {
+	background: lighten($game-container-background, 20%);
+}
+
+.startGame:hover {
+	background: lighten($game-container-background, 20%);
+}
+
+h1 {
+	font-family: "Courier New";
+	text-shadow: 3px 6px 5px $shadow;
 }

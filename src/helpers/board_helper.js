@@ -1,9 +1,9 @@
 import { List } from 'immutable';
 export const boardCreator = (rows, columns) => {
 	let board = [];
-	for(let row = 0; row < rows; rows ++) {
+	for(let row = 0; row < rows; row ++) {
 		let rowArray = [];
-		for(let column = 0; column < columns; columns ++) {
+		for(let column = 0; column < columns; column ++) {
 			rowArray.push(Math.round(Math.random()));
 		}
 		board.push(rowArray);

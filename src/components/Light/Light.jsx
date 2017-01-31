@@ -1,47 +1,33 @@
-import React, { Component, PropTypes } from 'react'; // eslint-disable-line
+import React, { PureComponent, PropTypes } from 'react'; // eslint-disable-line
 
 const styles = require('./Light.scss') // eslint-disable-line
-export default class Light extends Component {
+
+export default class Light extends PureComponent {
 	static propTypes = {
 		row: PropTypes.number,
 		column: PropTypes.number,
-		lightSwitched: PropTypes.func
+		switchLight: PropTypes.func,
+		globalState: PropTypes.object
 	}
 
 	constructor(props) {
 		super(props);
-		this.resetLight();
 		this.switchLight = this.switchLight.bind(this);
-		this.remoteSwitch = this.remoteSwitch.bind(this);
-	}
-
-	componentWillReceiveProps() {
-		this.resetLight();
-	}
-
-	resetLight() {
-		const random_boolean = Math.random() >= 0.5;
-		this.state = {
-			on: random_boolean
-		};
-	}
-
-	remoteSwitch() {
-		this.setState({on: !this.state.on});
 	}
 
 	switchLight() {
-		const { lightSwitched, row, column } = this.props;
-		this.setState({on: !this.state.on});
-		lightSwitched(row, column);
+		const { switchLight, globalState, row, column } = this.props;
+		switchLight(globalState, row, column);
 	}
 
 	getLightStyle() {
-		return this.state.on ? 'light on' : 'light';
+		const { isOn } = this.props;
+		return isOn === 1 ? 'light on' : 'light';
 	}
 
 	getLightBorderStyle() {
-		return this.state.on ? 'light-border-one border-on' : 'light-border-one';
+		const { isOn } = this.props;
+		return isOn === 1 ? 'light-border-one border-on' : 'light-border-one';
 	}
 
 	render() {

@@ -8,7 +8,7 @@ import {
 } from 'react-addons-test-utils';
 import { expect } from 'chai';
 import { shutOffLights } from '../helper_functions.js';
-import Grid from '../../src/components/Grid/Grid'; // eslint-disable-line
+import { Grid } from '../../src/components/Grid/Grid'; // eslint-disable-line
 import LightRow from '../../src/components/LightRow/LightRow';
 
 describe('Grid', () => {
@@ -16,8 +16,9 @@ describe('Grid', () => {
 	let component;
 
 	beforeEach(() => {
+		const rows = [[0,0,0,1,1], [0,1,1,0,1], [0,0,0,0,1], [0,0,1,0,1], [0,0,1,1,0]];
 		component = renderIntoDocument(
-			<Grid newGame={() => {}}/>
+			<Grid rows={rows} setReduxState={() => {}}/>
 		);
 	});
 
@@ -45,25 +46,4 @@ describe('Grid', () => {
 		expect(rows[0].props.width).to.equal(10);
 	});
 
-	it('can check its row\'s states', () => {
-		const rows = scryRenderedComponentsWithType(component, LightRow);
-		let gridRowStateFromComponent;
-		let currentGridRowsState = [];
-		for(let row of rows){
-			row.checkRowOff();
-			currentGridRowsState.push(row.isOff);
-		}
-		gridRowStateFromComponent = component.getRowsState();
-		expect(currentGridRowsState).to.eql(gridRowStateFromComponent);
-	});
-
-	it('can tell if the grid is completely off AKA we have a winner!', () => {
-		const rows = scryRenderedComponentsWithType(component, LightRow);
-		let win = false;
-		for(let row of rows){
-			shutOffLights(row);
-		}
-		win = component.checkForWin();
-		expect(win).to.be.true;
-	});
 });

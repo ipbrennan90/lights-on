@@ -1,50 +1,37 @@
-import React, {PropTypes, Component} from 'react'; //eslint-disable-line
-import LightRow from '../LightRow/LightRow'; //eslint-disable-line
+import React, {PropTypes, PureComponent} from 'react'; //eslint-disable-line
 const styles = require('./Grid.scss'); // eslint-disable-line
+import { boardCreator } from '../../helpers/board_helper';
+import LightRow from '../LightRow/LightRow'; //eslint-disable-line
 
 
-export default class Grid extends Component {
+export default class Grid extends PureComponent {
 
 	static propTypes = {
-		playerMoved: PropTypes.func,
-		newGame: PropTypes.func
+		setReduxState: PropTypes.func,
+		switchLight: PropTypes.func,
+		globalState: PropTypes.object,
+		rows: PropTypes.object,
+		moves: PropTypes.number
 	}
 
 	constructor(props){
 		super(props);
-		this.state = {
-			height: 5,
-			width: 5,
-			newGame: true,
-			gameWon: false
-		};
-		this.lightSwitched = this.lightSwitched.bind(this);
 		this.startGame = this.startGame.bind(this);
-	}
-
-	shouldComponentUpdate(nextProps, nextState) {
-		if(nextState.height !== this.state.height
-			|| nextState.width !== this.state.width
-			|| nextState.newGame === true
-			|| nextState.gameWon){
-			return true;
-		} else {
-			return false;
-		}
+		this.getGameButtonText = this.getGameButtonText.bind(this);
 	}
 
 	startGame() {
-		const { newGame } = this.props;
-		const height = Number(this.gameHeight.value);
-		const width = Number(this.gameWidth.value);
-		this.setState({
-			height: height > 0 ? height : 5,
-			width: width > 0 ? width : 5,
-			newGame: true,
-			gameWon: false
-		});
-		newGame();
-		this.getRowsState();
+		const { setReduxState } = this.props;
+		const height = this.gameHeight.value;
+		const width = this.gameWidth.value;
+		const newGame = {
+			game: {
+				rows: boardCreator(height > 0 ? height : 5, width > 0 ? width : 5),
+				hasWon: false,
+				moves: 0
+			}
+		};
+		setReduxState(newGame);
 	}
 
 	getRows() {
@@ -56,67 +43,32 @@ export default class Grid extends Component {
 		return rows;
 	}
 
-	lightSwitched(row, column) {
-		this.updateBoard(row, column).then(() => {
-			let state = this.state;
-			const isWinner = this.checkForWin();
-			state.gameWon = isWinner;
-			if(isWinner) this.setState(state);
-		});
-	}
-
-	updateBoard(row, column){
-		return new Promise((resolve) => {
-			const {playerMoved} = this.props;
-			const left = this.refs[row].refs[column - 1];
-			const right = this.refs[row].refs[column + 1];
-			const state = this.state;
-			let top;
-			let bottom;
-			if(state.newGame) {
-				state.newGame = false;
-				this.setState(state);
-			}
-			if(this.refs[row - 1]) top = this.refs[row - 1].refs[column];
-			if(this.refs[row + 1]) bottom = this.refs[row + 1].refs[column];
-			const lights = [left, right, top, bottom];
-			for(let light of lights) {
-				if(light) {
-					light.remoteSwitch();
-				}
-			}
-			playerMoved();
-			resolve();
-		});
-	}
-
-	getRowsState() {
-		let componentRowsState = [];
-		for(let row = 0; row < this.state.height; row ++){
-			componentRowsState.push(this.refs[row].checkRowOff());
-		}
-		return componentRowsState;
-	}
-
-	checkForWin() {
-		let componentRowsState = this.getRowsState();
-		const rowOff = (isOff) => isOff;
-		return componentRowsState.every(rowOff);
+	getGameButtonText() {
+		const {moves} = this.props;
+		const buttonText = moves > 0 ? 'reset game' : 'start game';
+		return buttonText;
 	}
 
 	render() {
-		const rows = this.getRows();
-		const { width } = this.state;
+		const moves = this.props.moves ? this.props.moves : 0;
+		const rows = this.props.rows ? this.props.rows : [];
+		const winner = typeof this.props.hasWon !== undefined ? this.props.hasWon : false;
+
 		return (
-			<div className="game-grid">
-				{this.state.gameWon &&
-					<h1>Winner!</h1>
-				}
-				<input type="number" ref={(height) => {this.gameHeight = height;}} placeholder="height" className="game_height"></input>
-				<input type="number" ref={(width) => {this.gameWidth = width;}} placeholder="height" className="game_width"></input>
-				<button onClick={this.startGame}>start game</button>
-				<div>
-					{rows.map((item, idx) => <LightRow lightSwitched={this.lightSwitched} key={idx} ref={idx} row={idx} width={width}/>)}
+			<div className="games-container">
+				<div className="game-grid">
+					{winner &&
+						<h1>WINNER!</h1>
+					}
+					{!winner &&
+						<h1>MOVES: {moves}</h1>
+					}
+					<input type="number" ref={(height) => {this.gameHeight = height;}} placeholder="height" className="game_height"></input>
+					<input type="number" ref={(width) => {this.gameWidth = width;}} placeholder="width" className="game_width"></input>
+					<button className="startGame" onClick={this.startGame}>{this.getGameButtonText()}</button>
+					<div>
+						{rows.map((lights, idx) => <LightRow switchLight={this.props.switchLight} globalState={this.props.globalState} key={idx} row={idx} lights={lights}/>)}
+					</div>
 				</div>
 			</div>
 		);

@@ -2,7 +2,8 @@ import { Map } from 'immutable';
 import { turnLightOnAt, checkBoardForWin } from './helpers/board_helper';
 
 const setState = (state, newState) => {
-	return state.merge(newState);
+	let realState = state.merge(newState);
+	return realState
 };
 
 const move = (state) => {
@@ -13,7 +14,6 @@ const move = (state) => {
 };
 
 const switchLight = (state, row, column) => {
-	console.log(state);
 	let board = state.getIn(['game', 'rows']).toJS();
 	const newBoard = turnLightOnAt(row, column, board);
 	return state.updateIn(['game', 'rows'],

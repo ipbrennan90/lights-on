@@ -207,6 +207,6 @@ describe('reducer', () => {
 				moves: 25,
 				hasWon: true
 			}
-		}))
+		}));
 	});
 });
