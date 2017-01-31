@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react'; //eslint-disable-line
 import { connect } from 'react-redux';
+import Favicon from 'react-favicon';
 import * as actionCreators from '../../action_creators';
 import Grid from '../../components/Grid/Grid';
 
@@ -26,6 +27,7 @@ class GameContainer extends Component {
 	render() {
 		return(
 			<div>
+				<Favicon url={['/favicon.ico']}/>
 				<Grid
 					setReduxState={this.props.setReduxState}
 					switchLight={this.props.switchLight}
