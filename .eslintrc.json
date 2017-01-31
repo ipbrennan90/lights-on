@@ -39,6 +39,8 @@
 			"beforeEach": true,
 			"afterEach": true,
 			"it": true,
-			"global": true
+			"global": true,
+			"process": true,
+			"__dirname": true
 		}
 }
