@@ -6,6 +6,7 @@
 	- may take a few seconds for the board image to load, the image loader is a bit slow
 	- if dev server won't run you may need to install webpack-dev-server globally
 	- npm install webpack-dev-server -g
+	- if everything is working the site should be displayed at http://localhost:8080/
 
 ### Recommendations
   - Although it is fun to see, setting width and height to anything over 100 may break it
